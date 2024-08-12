@@ -1,41 +1,42 @@
 .post-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    padding: 20px;
-  }
-  
-  .post-thumbnail-container {
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    background-color: #000;
-    position: relative;
-    color: #fff;
-  }
-  
-  .post-thumbnail {
-    width: 100%;
-    height: auto;
-  }
-  
-  .post-info {
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.8);
-  }
-  
-  .post-title {
-    font-size: 16px;
-    margin: 0;
-    font-weight: bold;
-  }
-  
-  .post-date {
-    font-size: 12px;
-    margin: 5px 0;
-  }
-  
-  .post-body {
-    font-size: 14px;
-  }
-  
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  justify-content: center; /* Center the grid items horizontally */
+}
+
+.post-thumbnail-container {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #000;
+  position: relative;
+  color: #fff;
+  width: 280px; /* Fixed width for each item */
+}
+
+.post-thumbnail {
+  width: 100%;
+  height: auto;
+}
+
+.post-info {
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.post-title {
+  font-size: 16px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.post-date {
+  font-size: 12px;
+  margin: 5px 0;
+}
+
+.post-body {
+  font-size: 14px;
+}
