@@ -1,0 +1,25 @@
+.post-container {
+    display: flex;
+    align-items: flex-start;
+    width: 75%; /* Content occupies 3/4 of the screen width */
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 20px; /* Optional padding */
+    box-sizing: border-box; /* Include padding in width calculation */
+  }
+  
+  .post-image {
+    flex: 1;
+    max-width: 30%; /* Adjust the image width to fit the layout */
+    margin-right: 20px; /* Space between image and content */
+  }
+  
+  .post-content {
+    flex: 2;
+  }
+  
+  .post-image img {
+    width: 100%; /* Image takes up full width of its container */
+    height: auto; /* Maintain aspect ratio */
+    float: left; /* Ensure the image floats left */
+  }
+  

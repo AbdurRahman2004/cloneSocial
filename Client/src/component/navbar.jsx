@@ -11,7 +11,7 @@ function NavBar({ onchange }) {
     function handleChange(e) {
         const { value } = e.target;
         setSearchItem(value);
-        onchange(searchItem);
+        onchange(value);
     }
 
     function handleSearch(e) {
@@ -26,7 +26,7 @@ function NavBar({ onchange }) {
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav className="me-auto my-2 my-lg-0" navbarScroll>
-                        <Nav.Link href="home">Home</Nav.Link>
+                        <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="about">About</Nav.Link>
                         <Nav.Link href="createpost">Create Post</Nav.Link>
                     </Nav>
