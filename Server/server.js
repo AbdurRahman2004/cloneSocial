@@ -9,7 +9,7 @@ const port = 3001;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-const posts = [
+let posts = [
   {
     id: 1,
     title: "Exploring JavaScript ES6 Features",
@@ -76,6 +76,19 @@ app.post("/createpost",(req,res)=>{
     console.log(e);
   }
 })
+
+app.delete('/posts/:id', (req, res) => {
+  const  id  =parseInt(req.params.id,10); 
+  console.log(id);
+  const intialLength = posts.length;
+ posts = posts.filter(p => p.id !== id);
+ console.log(posts);
+  if (posts.length < intialLength ) {
+    res.status(200).send("Deleted SuccesFully");
+  } else {
+    res.status(404).send(`Does'nt Deleted !`);
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
