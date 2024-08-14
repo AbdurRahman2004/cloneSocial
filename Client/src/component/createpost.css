@@ -46,3 +46,70 @@
     background-color: #0056b3;
   }
   
+  .post-form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .editor-container {
+    height: 300px; /* Adjust the height as needed */
+  }
+  
+  .btn {
+    margin-top: 20px;
+  }
+  /* Wrapper to center the form container */
+.center-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #fffcfc;
+  background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png"); /* Full viewport height */
+}
+
+/* Form container styling */
+.post-form-container {
+  max-width: 800px;
+  width: 100%;
+  padding: 20px;
+  background: #fff; /* White background for the form */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the form elements horizontally */
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Ensure the form takes up the full width of the container */
+}
+
+.form-group {
+  margin-bottom: 20px;
+  width: 100%; /* Ensure form groups take up full width */
+}
+
+.editor-container {
+  height: 300px; /* Adjust the height as needed */
+  width: 100%; /* Ensure the editor takes up full width */
+}
+
+.btn {
+  margin-top: 20px;
+}

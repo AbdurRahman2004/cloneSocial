@@ -2,6 +2,8 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import "./post.css"; // Ensure to import the CSS file
 import DeleteIcon from '@mui/icons-material/Delete';
+//import Fab from '@mui/material/Fab';
+import EditIcon from '@mui/icons-material/Edit';
 
 function Post({ post }) {
     const { id } = useParams();
@@ -22,6 +24,10 @@ function Post({ post }) {
                         <p>{postItem.body}</p>
 
                         <Link to={`/delete/${id}`}><DeleteIcon /></Link>
+                        
+                         <Link to={`/edit/${id}`}><EditIcon /></Link>
+                        
+                        
                     </>
                 ) : (
                     <p>Post not found</p>

@@ -9,6 +9,7 @@ import NavBar from './component/navbar';
 import Post from './component/post';
 import Missing from './component/missing';
 import Delete from './component/delete';
+import Edit from './component/edit';
 import { useState } from 'react';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path='about' element={<About />} ></Route>
         <Route path='createpost' element={<CreatePost />} ></Route>
         <Route path='delete/:id' element={<Delete />} ></Route>
+        <Route path='edit/:id' element={<Edit />} ></Route>
         <Route path='post/:id' element={<Post   post={post}/>} ></Route>
         <Route path="*" element={<Missing />} />
       </Routes>

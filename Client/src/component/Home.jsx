@@ -24,7 +24,7 @@ function Home({searchItem,postset}){
 
          fetchPost()
 
-    },[]);
+    },[postset]);
 
    
 
@@ -42,8 +42,8 @@ function Home({searchItem,postset}){
               <div className="post-grid">
                   {filteredPosts.map(post => (
 
-                    <Link to={`/post/${post.id}`} style={{ textDecoration: 'none' }}>
-                      <div key={post.id} className="post-thumbnail-container">
+                    <Link key={post.id} to={`/post/${post.id}`} style={{ textDecoration: 'none' }}>
+                      <div  className="post-thumbnail-container">
                           <img
                               src="https://via.placeholder.com/480x270"
                               alt="Thumbnail"
@@ -52,7 +52,7 @@ function Home({searchItem,postset}){
                           <div className="post-info">
                               <h3 className="post-title">{post.title}</h3>
                               <p className="post-date">{post.date} at {post.time}</p>
-                              <p className="post-body">{post.body}</p>
+                              <p className="post-body">{post.body.substring(0,100)}...</p>
                           </div>
                       </div>
                       </Link>
