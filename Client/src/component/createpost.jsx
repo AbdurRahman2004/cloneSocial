@@ -1,64 +1,63 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./createpost.css"
+import ReactQuill from 'react-quill';  // Import React Quill
+import 'react-quill/dist/quill.snow.css';  // Import Quill's styles
+import "./createpost.css";  // Make sure to define styles in this file
 
 function CreatePost() {
   const [formData, setFormData] = useState({
-    id: "",
     title: "",
     date: "",
     time: "",
     body: ""
-
   });
+
+  const navigate = useNavigate();
 
   function handleChange(e) {
     const { name, value } = e.target;
+    const date = new Date();
+    const currentDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
+    const time = new Date().toLocaleTimeString();
+
     setFormData({
       ...formData,
       [name]: value,
+      date: currentDate,
+      time: time
+    });
+  }
+
+  function handleEditorChange(value) {
+    setFormData({
+      ...formData,
+      body: value
     });
   }
 
   async function handleSubmit(e) {
+    e.preventDefault();
     try {
-      e.preventDefault();
-      console.log(formData);
-      const res = await axios.post("http://localhost:3001/createpost", formData);
-      setFormData(res);
-
+      navigate('/');
+      await axios.post("http://localhost:3001/createpost", formData);
       setFormData({
-        id: "",
         title: "",
         date: "",
         time: "",
         body: ""
-
-      })
-
+      });
+      
     } catch (e) {
-      console.log(e);
+      console.error("Error submitting the form:", e);
     }
-
-  };
-
+  }
 
   return (
-    <>
+    <div className="center-wrapper">
       <div className="post-form-container">
         <h2>Create a New Post</h2>
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <div className="form-group">
-            <label htmlFor="id">ID</label>
-            <input
-              type="number"
-              id="id"
-              name="id"
-              value={formData.id}
-              onChange={handleChange}
-              required
-            />
-          </div>
+        <form onSubmit={handleSubmit} className="form-container">
           <div className="form-group">
             <label htmlFor="title">Title</label>
             <input
@@ -68,46 +67,46 @@ function CreatePost() {
               value={formData.title}
               onChange={handleChange}
               required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="date">Date</label>
-            <input
-              type="date"
-              id="date"
-              name="date"
-              value={formData.date}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="time">Time</label>
-            <input
-              type="time"
-              id="time"
-              name="time"
-              value={formData.time}
-              onChange={handleChange}
-              required
+              className="form-control"
             />
           </div>
           <div className="form-group">
             <label htmlFor="body">Body</label>
-            <textarea
-              id="body"
-              name="body"
+            <ReactQuill
               value={formData.body}
-              onChange={handleChange}
-              rows="4"
-              required
+              onChange={handleEditorChange}
+              modules={CreatePost.modules}
+              formats={CreatePost.formats}
+              className="editor-container"
             />
           </div>
-          <button type="submit" className="submit-button">Submit</button>
+          <button type="submit" className="btn btn-primary">Submit</button>
         </form>
       </div>
-    </>
-  )
+    </div>
+  );
 }
+
+// Quill modules and formats
+CreatePost.modules = {
+  toolbar: [
+    [{ 'header': '1'}, { 'header': '2' }],
+    ['bold', 'italic', 'underline'],
+    ['image', 'code-block'],
+    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+    [{ 'align': [] }],
+    ['link'],
+    [{ 'color': [] }, { 'background': [] }],
+    [{ 'font': [] }],
+    [{ 'size': [] }]
+  ],
+};
+
+CreatePost.formats = [
+  'header', 'font', 'size',
+  'bold', 'italic', 'underline',
+  'list', 'bullet', 'indent',
+  'link', 'image', 'color', 'background', 'align', 'code-block'
+];
 
 export default CreatePost;

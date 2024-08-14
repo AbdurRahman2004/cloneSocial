@@ -49,7 +49,7 @@ let posts = [
 
 
 app.get('/posts', (req, res) => {
-  res.json(posts);
+  res.json([...posts].reverse());
 });
 
 app.get('/posts/:id', (req, res) => {
@@ -65,9 +65,8 @@ app.get('/posts/:id', (req, res) => {
 app.post("/createpost",(req,res)=>{
   try{
     
-  
+  const id = posts[posts.length-1].id + 1;
   const {title,date,time,body} = req.body;
-  const id = parseInt(req.body.id, 10);
   const content = {id,title,date,time,body};
   posts.push(content);
   console.log(posts)
@@ -87,6 +86,31 @@ app.delete('/posts/:id', (req, res) => {
     res.status(200).send("Deleted SuccesFully");
   } else {
     res.status(404).send(`Does'nt Deleted !`);
+  }
+});
+
+
+app.patch('/posts/:id',(req,res)=>{
+  try{
+  const id = parseInt(req.params.id);
+  const {title , body } = req.body;
+  let postFound = false;
+    posts = posts.map(post => {
+      if (post.id === id) {
+        postFound = true;
+        return { ...post, title: title || post.title, body: body || post.body };
+      }
+      return post;
+    });
+
+    if (postFound) {
+      res.status(200).json({ message: 'Post updated successfully' });
+    } else {
+      res.status(404).json({ message: 'Post not found' });
+    }
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: 'An error occurred while updating the post' });
   }
 });
 
