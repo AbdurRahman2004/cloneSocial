@@ -25,10 +25,11 @@ function Edit(){
 
     async function handleSubmit(e){
         try{
+          const strippedBody = response.body.replace(/<\/?p>/g, "");
             e.preventDefault();
         const res = await axios.patch(`http://localhost:3001/posts/${id}`,{
             title: response.title,
-            body: response.body,
+            body: strippedBody,
         });
         if(!res) throw new Error("Error occured");
         navigate("/")

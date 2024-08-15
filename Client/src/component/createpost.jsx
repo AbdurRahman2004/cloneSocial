@@ -39,8 +39,13 @@ function CreatePost() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
+      const cleanedBody = formData.body.replace(/<[^>]*>/g, "");
+      const updatedFormData = {
+        ...formData,
+        body : cleanedBody
+      }
       navigate('/');
-      await axios.post("http://localhost:3001/createpost", formData);
+      await axios.post("http://localhost:3001/createpost", updatedFormData);
       setFormData({
         title: "",
         date: "",
